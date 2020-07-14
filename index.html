@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app='NarrowItDownApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style> body { font-size: 1.4em; }</style>
+    <title>Lunch Menu</title>
+  </head>
+  <body>
+    <h1>MENU CARD!!!!!!</h1>
+    <div ng-controller='NarrowItDownController as menu'>
+        Enter the item you need to search!!
+        <br>
+        <br>
+        <input type="text" ng-model="menu.searchitem" style="width:400px ;height:30px;">
+        <button ng-click="menu.checkItems()" style="height:35px">Narrow It Down For Me!</button>
+        <div ng-if="menu.foundItems.length!=0">
+        <ol>
+          <li ng-repeat="item in menu.foundItems">
+            Name : {{ item.name }}, Short Name : {{ item.short_name }}, Description : {{ item.description }}
+            <button ng-click="menu.removeItem($index)">Don't want this one!</button>
+          </li>
+        </ol>
+        </div>
+        <div ng-if="menu.foundItems.length==0">
+          <br>
+          {{menu.describe}}
+        </div>
+        <br>
+        <br>
+    </div>
+  </body>
+</html>
